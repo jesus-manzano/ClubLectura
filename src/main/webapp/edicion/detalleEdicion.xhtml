@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+
+            <h:head>
+                <f:metadata>
+                    <f:viewParam name="id" required="true"
+                                 value="#{ctrlEdiciones.edicion.id}"/>
+                    <f:viewAction action="#{ctrlEdiciones.recupera()}"/>
+                </f:metadata>
+            </h:head>
+
+            <h:body class="form-signin" style="background-color: beige;">
+                <div class="v-main__wrap">
+                    <div class="container pt-0 container-fluid">
+                        <div class="my-4">
+                            <div class="row">
+                                <div class="col-md-20 order-lg-2 col-12 order-1">
+                                    <div class="product-info">
+
+                                        <h1 class="text-h4 mb-1" align="center">
+                                        Detalles sobre la edicion #{ctrlEdiciones.edicion.numero}
+                                            del libro #{ctrlEdiciones.tituloEdicion()}
+                                        </h1>
+
+                                        <br/><br/><br/>
+
+                                        <div class="text-h5 d-flex flex-wrap author mb-2">
+                                            <div><b>ISBN:</b> #{ctrlEdiciones.edicion.isbn}</div>
+                                        </div>
+
+                                        <div class="text-h5 d-flex flex-wrap author mb-2">
+                                            <div><b>Número de pagians:</b> #{ctrlEdiciones.edicion.paginas} paginas</div>
+                                        </div>
+
+                                        <div class="text-h5 d-flex flex-wrap author mb-2">
+                                            <div><b>Tipo:</b> #{ctrlEdiciones.edicion.tipo}</div>
+                                        </div>
+
+                                        <div class="text-h5 d-flex flex-wrap author mb-2">
+                                            <div><b>Editorial:</b> #{ctrlEdiciones.edicion.editorial}</div>
+                                        </div>
+
+                                        <div class="text-h5 d-flex flex-wrap author mb-2">
+                                            <div><b>Fecha:</b> #{ctrlEdiciones.edicion.fecha}</div>
+                                        </div>
+
+                                        <c:if test="#{facesContext.externalContext.isUserInRole('ADMINISTRADORES')}">
+                                            <h:form>
+                                                <h:commandButton action="#{ctrlEdiciones.borra()}"
+                                                                 value="Borrar" class="btn btn-sm btn-outline-secondary"/>
+                                            </h:form>
+                                        </c:if>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4">
+                        <div class="fill-side secondary">
+                            <div class="row secondary">
+                                <div class="col-md-8 col-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

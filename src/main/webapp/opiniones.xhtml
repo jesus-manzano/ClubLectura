@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+
+            <h:head>
+                <f:metadata>
+                    <f:viewParam name="isbn" required="true"
+                                 value="#{ ctrlLibros.libro.isbn }"/>
+                    <f:viewAction action="#{ ctrlLibros.recupera() }"/>
+                </f:metadata>
+            </h:head>
+
+            <h:body style="background-color: beige;">
+                <div id="myCarousel" class="carousel slide">
+                    <div class="col">
+                        <div align="center">
+                            <h1 class="text-h4 mb-1" style="margin: 30px;">#{ctrlLibros.libro.titulo}</h1>
+
+                            <div class="container" style="margin: 30px; max-width: 70%;">
+                                <div class="row">
+                                    <div class="col">
+                                        <h:graphicImage
+                                                value="#{ctrlLibros.libro.url}" width="auto"
+                                                height=""
+                                                style="height:350px; width:auto "/>
+                                    </div>
+
+                                    <div class="col">
+                                        <h2 class="title">#{ctrlLibros.libro.titulo}</h2>
+
+                                        <div class="short" style="-webkit-line-clamp:7;">
+                                            <div class="resume-body">#{ctrlLibros.libro.descripcion}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body" style="max-width: 70%;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <c:if test="#{not empty request.remoteUser}">
+                                    <h:form>
+                                        <h:panelGrid>
+                                            <h:inputTextarea styleClass="card-body" value="#{ctrCritica.critica.descrip}"
+                                                             style="margin-bottom: 10px; width: 1000px;"
+                                                             class="form-control" rows="3"
+                                                             placeholder="Introduce aquí tu opinión"/>
+
+                                            <h:commandButton styleClass="btn btn-sm btn-outline-success"
+                                                             value="Añadir opinion" action="#{ctrCritica.enviar(ctrlLibros.libro.isbn, facesContext.externalContext.userPrincipal.name)}"/>
+                                        </h:panelGrid>
+                                    </h:form>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="album py-5">
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <ui:repeat value="#{ctrCritica.buscaPorIsbn(ctrlLibros.libro.isbn)}" var="opi">
+                                <div class="col">
+                                    <div align="center">
+                                        <div class="col" style="margin: 10px;">
+                                            <img src="https://previews.123rf.com/images/alekseyvanin/alekseyvanin1704/alekseyvanin170401248/75474229-icono-de-l%C3%ADnea-de-cuenta-de-usuario-ilustraci%C3%B3n-de-logotipo-de-vector-de-persona-de-esquema-pictogra.jpg" alt="mdo" width="80" height="80"
+                                                 class="rounded-circle"/>
+
+                                            <h2>#{opi.userCritica}</h2>
+
+                                            <h4>Opinion del usuario:</h4>
+
+                                            <p>#{opi.descrip}</p>
+
+                                            <c:if test="#{facesContext.externalContext.isUserInRole('ADMINISTRADORES')}">
+                                                <h:form>
+                                                    <h:commandButton styleClass="btn btn-warning" value="Borrar" action="#{ctrCritica.elimina(opi.id)}"/>
+                                                </h:form>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

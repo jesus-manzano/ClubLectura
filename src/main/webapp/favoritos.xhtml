@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/general.xhtml">
+    <ui:define name="contenido">
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="isbn" required="true"
+                             value="#{ctrlFavoritos.favorito.isbn_favorito}"/>
+                <f:viewAction action="#{ctrlFavoritos.recupera()}"/>
+            </f:metadata>
+        </h:head>
+
+        <h:body class="form-signin" style="background-color: beige;">
+            <section class="py-2 text-center container">
+                <div class="row py-lg-2">
+                    <h1 class="fw-light">Libros Favoritos</h1>
+                    <p class="lead text-muted">Todos tus libros favoritos</p>
+                </div>
+            </section>
+
+            <div class="album py-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <ui:repeat var="f" value="#{ctrlFavoritos.favoritos}">
+                            <div class="col">
+                                <div align="center">
+                                    <h:graphicImage
+                                            value="#{f.url_favorito}" width="auto"
+                                            height="" class="product-image show-shadow cdl-img active"
+                                            style="height:350px; width:auto "/>
+                                    <div class="card-body">
+                                        <p class="card-text"><b>#{f.titulo_favorito}</b></p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <h:link value="Leer" class="btn btn-sm btn-outline-secondary" outcome="/libro/leer">
+                                                    <f:param name="isbn" value="${f.isbn_favorito}"/>
+                                                </h:link>
+                                                <h:link value="Opinión" class="btn btn-sm btn-outline-secondary" outcome="/opiniones"/>
+                                                <h:link value="★" class="btn btn-sm btn-warning" action="#{ctrlFavoritos.borra()}"/>
+
+                                            </div>
+                                            <h:link value="Mostrar" outcome="/libro/detalle">
+                                                <f:param name="isbn" value="${f.isbn_favorito}"/>
+                                            </h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

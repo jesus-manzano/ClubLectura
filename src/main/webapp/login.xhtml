@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: XjesusX13
+  Date: 09/03/2022
+  Time: 12:40
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <style>
+        div {
+            margin: 4px;
+        }
+    </style>
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+            <h:body class="form-signin" style="background-color: beige;">
+                <form action="j_security_check" method="POST" style=" width: 40%; margin-left: 30%;">
+
+                    <!-- Apartado de Login -->
+                    <h1 class="h3 mb-3 fw-normal" style=" margin-top: 40px; ">Login</h1>
+
+                    <div class="form-floating">
+                        <input class="form-control" type="text" name="j_username" placeholder="Usuario"/>
+                        <label>Usuario</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="password" name="j_password" placeholder="Contraseña"/>
+                        <label>Contraseña</label>
+                    </div>
+                    <input class="w-100 btn btn-lg btn-primary" type="submit" value="Login" style="margin-top: 3px;"/>
+                </form>
+
+                <h:form style=" width: 40%; margin-left: 30%;">
+
+                    <!-- Apartado de Registro -->
+                    <h1 class="h3 mb-3 fw-normal" style=" margin-top: 40px; ">Registrarse</h1>
+
+                    <div class="form-floating">
+                        <h:inputText id="nombre" value="#{ctrlClientes.cliente.nombre}" required="true" requiredMessage="El campo Nombre es obligatorio" styleClass="form-control" p:placeholder="Nombre"/>
+                        <label>Nombre</label>
+                        <h:message for="nombre" style="color: red;"/>
+                    </div>
+                    <div class="form-floating">
+                        <h:inputText id="apellidos" value="#{ctrlClientes.cliente.apellidos}" required="true" requiredMessage="El campo Apellidos es obligatorio" styleClass="form-control" p:placeholder="Apellidos"/>
+                        <label>Apellidos</label>
+                        <h:message for="apellidos" style="color: red;"/>
+                    </div>
+                    <div class="form-floating">
+                        <h:inputText id="email" value="#{ctrlClientes.cliente.email}" required="true" requiredMessage="El campo Email es obligatorio" styleClass="form-control" p:placeholder="Email"/>
+                        <label>Email</label>
+                        <h:message for="email" style="color: red;"/>
+                    </div>
+                    <div class="form-floating">
+                        <h:inputText id="usuario" value="#{ctrlClientes.cliente.user}" required="true" requiredMessage="El campo Usuario es obligatorio" styleClass="form-control" p:placeholder="Usuario"/>
+                        <label>Usuario</label>
+                        <h:message for="usuario" style="color: red;"/>
+                    </div>
+                    <div class="form-floating">
+                        <h:inputSecret id="contraseña" value="#{ctrlClientes.cliente.pwd}" required="true" requiredMessage="El campo Contraseña es obligatorio" styleClass="form-control" p:placeholder="Contraseña"/>
+                        <label>Contraseña</label>
+                        <h:message for="contraseña" style="color: red;"/>
+                    </div>
+                    <h:commandButton value="Registrarse" action="#{ctrlClientes.enviar}" class="w-100 btn btn-lg btn-primary" style="margin-top: 3px;"/>
+                </h:form>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

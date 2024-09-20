@@ -1,0 +1,30 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <head>
+        <title>ClubLectura</title>
+        <link rel="shortcut icon" href="../favicon.ico" />
+        <ui:include src="/WEB-INF/templates/navegacion.xhtml"/>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js" ></script>
+        <script src="../js/librosapp.js"></script>
+    </head>
+
+    <body>
+        <h1>Alta de una nueva Edicion</h1>
+        <div id="errores"><!-- Mensajes de error --></div>
+        <form id="fAlta" method="POST" action="" >
+            <div><label>ISBN:<input name="isbn" ></label></div>
+            <div><label>Numero:<input name="numero" ></label></div>
+            <div><label>Fecha:<input name="fecha" ></label></div>
+            <div><label>Editorial:<input name="editorial" ></label></div>
+            <div><label>Paginas:<input name="paginas" ></label></div>
+            <div><label>Tipo:<input name="tipo" ></label></div>
+            <input name="enviar" type="Submit" value="Guardar" >
+            <input name="enviar" type="Reset" value="Limpiar">
+        </form>
+    </body>
+</html>

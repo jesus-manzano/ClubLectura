@@ -1,0 +1,130 @@
+## Dfa00011-David Fernández Arenas
+### Added
+    - Archivo index.xhtml, donde se muestra la página principal de Clublectura con los diferentes libros disponibles para leer u opinar.
+
+    - Archivo leer.xhtml, donde se muestra el libro elegido para leer.
+    
+    - Directorio libro, donde tendra incorporado las diferentes opciones de los libros.
+    
+    - Archivo Alta.xhtml, donde permite al administrador meter un libro en el club.
+    
+    - Archivo detalle.html, donde permite al usuario ver los detalles del libro.
+    
+    - general.xhtml, plantilla en la que incluye la cabecera, el pie y el contenido principal.
+    
+    - Clases javas LibroDAO, LibroController, Libro.
+    
+    -Clase LibrosDAOjpa.
+    
+    -Interfaz DAOJPA.
+    
+    -Carpeta sql, con le archivo sampledata.sql donde incorpora los valores de los libros.
+    
+
+### Changed
+    - Modificación en la cabecera en la que se muestra las distintas secciones que puede elegir el usuario (inicio, favoritos, opiniones, FAQ, About)
+
+    - Enlace al archivo leer.xhtml para que dirija al usuario a la sección de leer el libro seleccionado.
+
+    - Correccion de error en la cabecera al ir a la página de las opiniones.
+    
+    - Modificaciones en los archicos leer.xhtml e index.xhtml donde se incorporan las etiquetas de JSF.
+    
+    - Modificación en los archivos critica.java y CriticaDAO.java, para que se pudiera ver varias opiniones del libro.
+    
+    - Modificación de la clase LibrosDAO a una interfaz genérica
+
+##Jma00068-Jesús Manzano Álvarez
+### Added
+    - Archivo login.xhtml, donde se muestra la página de login y registro del ClubLectura para poder unirse a la comunidad.
+    
+    - Archivo navegacion.xhtml, donde se encuentra la barra de navegación, la cual es común en las distintas páginas.
+    
+    - Archivo footer.xhtml, donde se encuentra el pie de página o footer, el cual es común en las diferentes páginas.
+    
+    - Archivo favicon.ico, es el icono que aparece a la izquierda del título de la página web.
+    
+    - Archivo clientes.xhtml, donde se permitirá a los administradores de la palicación web ver todos los usuarios registrados.
+    
+    - Clases java Cliente (almacena cada cliente), ClientesDAO (almacena todos los clientes registrados), ClientesController (controla toda la gestión de los usuarios).
+
+### Changed
+    - Modificaciones en la barra de navegación en el botón de login e icono del inicio.
+    
+    - Moficación del footer para que aparezcan las distintas redes sociales, además de las distintas secciones que aparecen en la barra de navegación.
+    
+    - Correción en la disposición de los elementos de la página login.xhtml
+    
+    - Modificaciones en el archivo login.xhtml, dotando de funcionalidad al botón registrarse.
+    
+    - Creación del archivo clientes.xhtml para mostrar todos los usuarios que se van registrando en nuestra aplicación.
+    
+##bsi00001-Bader Irheem
+### Added
+    - Primer commit, enlazar el proyecto a gitLab.
+
+    - Archivo favoritos.xhtml, donde se muestra la pagina de los libros favoritos.
+
+    - Clases java FavoritosDAO y FavoritosController
+
+### Changed
+    - Modificacion en el archivo favoritos.xhtml, para mostrar los libros añadidos a como favoritos
+    
+##jpc00068-Jesus Perez Castilla
+### Added
+    - Clase java Critica para el funcionamiento de añadir una opinion
+    
+    - Clase java CriticaDAO para el funcionamiento de añadir una opinion
+    
+    - Clase java CriticaController para el funcionamiento de añadir una opinion
+    
+    - Archivo muestra.xhtml para realizar una serie de pruebas para el correcto funcionamiento del mapa implementado
+    
+    - Commits para ir guardando el proyecto y tener un informe de los pasos realizados
+    
+    (Iteración 3)
+    - Clase CriticaDAOJpa.java para el funcionamiento en la base de datos
+    
+    - Clase CriticaDAOMap.java para el funcionamiento en la base de datos
+    
+    - Anotación DAOJpa para el funcionamiento en la base de datos
+    
+    - Anotación DAOMap para el funcionamiento en la base de datos
+    
+    - Interfaz GenericDAO para el funcionamiento en la base de datos
+    
+    - Todo esto lo he organizado en una carpeta que se llama Critica dentro de la carpeta es.ujaen.clublectura
+    
+    -Creación de la base de datos (solo la he podido crear)
+
+### Changed
+    - Modificacion en el archivo opiniones.xhtml, que muestra la portada del libro con una breve 
+    descripción, un cuadro de texto para añadir la opinion del usuario, dos botones cuyo funcionamiento
+    es añadir y quitar la opinion y por último los usuarios con sus fotos, nombres y opiniones.
+    
+    (Iteración 3)
+    -Modificiaciones en los archivos java critica, criticacontroler, criticadao que pasa a ser una interfaz
+
+###bsi00001 - Bader Irheem (Edición)
+### Added
+    - Archivo Edicion.xhtml, donde solo se muestra una lista de las destintas ediciones de un libro
+
+    - Clases Edicion, EdicionDAO, EdicionDAOJPA, EdicionDAOMap y EdicionController
+
+    - Archivos EdicionesValidationExceptionManager y EdicionResource en el api
+
+    - Vista altaEdicion.xhtml donde se da de alta a una nueva edicion
+
+    - Vista detalleEdicion.xhtml donde se muesta la información de una edicion
+
+    - Vista alta_Edicion.html donde se especifica la plantilla de la vista de altaEdicion.xhtml
+
+### Changed
+
+    - Añadir la lista de las ediciones de los libros en la vista leer.xhtml
+
+    - Añadir un botón de añadir nueva edición solo para usuarios ADMINISTRADOR en la vista leer.xhtml
+
+    - Añadir ediciones de libros en sampledata.sql
+
+    - La rama Edición del repositorio GitLab: https://gitlab.ujaen.es/DAW/2122/equipo10/Clublectura/tree/Edicion

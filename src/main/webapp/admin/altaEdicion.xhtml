@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/general.xhtml">
+    <ui:define name="contenido">
+
+        <h:head>
+            <f:metadata>
+                <f:viewParam name="isbn" required="true"
+                             value="#{ctrlLibros.libro.isbn}"/>
+                <f:viewAction action="#{ctrlLibros.recupera()}"/>
+            </f:metadata>
+        </h:head>
+
+        <h:body class="form-signin" style="background-color: beige;">
+            <div align="center">
+                <h1>Alta de una nueva edicion del libro #{ctrlLibros.libro.titulo}</h1>
+                <p>Con isbn #{ctrlLibros.libro.isbn}</p>
+                <p>Ediciones creadas de este libro #{ctrlEdiciones.numEdicionesLibro(ctrlLibros.libro.isbn)}</p>
+                <h:messages/>
+                <h:form>
+
+                    <div>
+                        <h:inputText var="ISBN" id="isbn" value="#{ctrlEdiciones.edicion.isbn}"
+                                     p:placeholder="ISBN" required="true"
+                                     requiredMessage="El isbn es obligatorio"
+                                     validatorMessage="ISBN válidos: 10 o 13 dígitos">
+                            <f:validateRegex pattern="\d{10}(\d{3})?"/>
+                        </h:inputText>
+                        <div><h:message for="isbn"/></div>
+                    </div>
+
+                    <div>
+                        <h:inputText id="numero" value="#{ctrlEdiciones.edicion.numero}"
+                                     p:placeholder="Numero" required="true"
+                                     requiredMessage="El número no es válido">
+                        </h:inputText>
+                        <div><h:message for="numero"/></div>
+                    </div>
+
+                    <div>
+                        <h:inputText id="fecha" value="#{ctrlEdiciones.edicion.fecha}"
+                                     p:placeholder="Fecha" required="true"
+                                     requiredMessage="La fecha no es válida">
+                        </h:inputText>
+                        <div><h:message for="fecha"/></div>
+                    </div>
+
+                    <div>
+                        <h:inputText id="editorial" value="#{ctrlEdiciones.edicion.editorial}"
+                                     p:placeholder="Editorial" required="true"
+                                     requiredMessage="El editorial no es válido">
+                        </h:inputText>
+                        <div><h:message for="editorial"/></div>
+                    </div>
+
+                    <div>
+                        <h:inputText id="paginas" value="#{ctrlEdiciones.edicion.paginas}"
+                                     p:placeholder="Paginas" required="true"
+                                     requiredMessage="El número de páginas no es válido">
+                        </h:inputText>
+                        <div><h:message for="paginas"/></div>
+                    </div>
+
+                    <div>
+                        <h:inputText id="tipo" value="#{ctrlEdiciones.edicion.tipo}"
+                                     p:placeholder="Tipo" required="true"
+                                     requiredMessage="El tipo no es válido">
+                        </h:inputText>
+                        <div><h:message for="tipo"/></div>
+                    </div>
+
+                    <br/><br/>
+                    <div>
+                        <h:commandButton action="#{ctrlEdiciones.validar()}" value="Alta edición"
+                                         class="btn btn-sm btn-outline-secondary"
+                                         outcome="/edicion/detalleEdicion"/>
+                    </div>
+                </h:form>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: XjesusX13
+  Date: 22/03/2022
+  Time: 13:29
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <style>
+        div {
+            margin: 4px;
+        }
+        p {
+            font-size: large;
+        }
+        li {
+            margin-right: 20px;
+        }
+    </style>
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+            <h:body class="form-signin" style="background-color: beige;">
+
+                <section class="py-2 text-center container">
+                    <div class="row py-lg-2">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <h1 class="fw-light">Lista de clientes</h1>
+                        </div>
+                    </div>
+                </section>
+
+                <ui:repeat value="#{ctrlClientes.clientes}" var="c">
+                    <h:form class="p-3 bg-secondary text-white" style=" margin: 20px; margin-left: 10%; margin-right: 10%;">
+                        <div class="container">
+                            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
+                                </a>
+
+                                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                                    <li><a style="font-size: large;" class="nav-link px-2 text-white"><b>Usuario:</b> #{c.user}</a></li>
+                                    <li><a style="font-size: large;" class="nav-link px-2 text-white"><b>Nombre:</b> #{c.nombre}</a></li>
+                                    <li><a style="font-size: large;" class="nav-link px-2 text-white"><b>Apellidos:</b> #{c.apellidos}</a></li>
+                                    <li><a style="font-size: large;" class="nav-link px-2 text-white"><b>Email:</b> #{c.email}</a></li>
+                                </ul>
+
+                                <div  class="btn btn-warning">
+                                    <svg width="18" height="18" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"></path>
+                                    </svg>
+
+                                    <h:commandButton styleClass="btn btn-warning" value="Borrar" action="#{ctrlClientes.elimina(c.user)}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </ui:repeat>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+
+            <h:head>
+                <f:metadata>
+                    <f:viewParam name="isbn" required="true"
+                                 value="#{ ctrlLibros.libro.isbn }"/>
+                    <f:viewAction action="#{ ctrlLibros.recupera() }"/>
+                </f:metadata>
+            </h:head>
+
+            <h:body class="form-signin" style="background-color: beige;">
+                <div class="v-main__wrap">
+                    <div class="container pt-0 container-fluid">
+                        <div class="my-4">
+                            <div class="row">
+                                <div class="col-md-20 order-lg-2 col-12 order-1">
+                                    <div class="product-info">
+
+                                        <h1 class="text-h4 mb-1" align="center">
+                                            Detalles del libro #{ctrlLibros.libro.titulo}
+                                        </h1>
+
+                                        <br/><br/>
+
+                                        <div class="col-md-3 order-lg-1 col-12 order-2">
+                                            <div class="row justify-center">
+                                                <div class="v-card v-card-flat v-sheet theme-light rounded-0">
+                                                    <h:graphicImage value="#{ctrlLibros.libro.url}" width="auto"
+                                                                    height="" class="product-image show-shadow cdl-img active"
+                                                                    style="height:350px; width:auto "/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5 order-lg-2 col-12 order-1">
+                                            <div class="product-info">
+                                                <div><b>ISBN:</b> #{ctrlLibros.libro.isbn}</div>
+
+                                                <div><b>Título: </b>#{ctrlLibros.libro.titulo}</div>
+
+                                                <div><b>Descripción: </b>#{ctrlLibros.libro.descripcion}</div>
+
+                                                <div>
+                                                    <c:if test="#{facesContext.externalContext.isUserInRole('ADMINISTRADORES')}">
+                                                        <h:form>
+                                                            <h:commandButton action="#{ctrlLibros.borra()}"
+                                                                             class="btn btn-sm btn-outline-secondary"
+                                                                             value="Borrar"/>
+                                                        </h:form>
+                                                    </c:if>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4">
+                        <div class="fill-side secondary">
+                            <div class="row secondary">
+                                <div class="col-md-8 col-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>

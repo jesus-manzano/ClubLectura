@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/general.xhtml">
+        <ui:define name="contenido">
+
+            <h:body class="form-signin" style="background-color: beige;">
+
+                <section class="py-2 text-center container">
+                    <div class="row py-lg-2">
+                        <h1 class="fw-light">Tus libros favoritos</h1>
+                        <p class="lead text-muted">Aquí se almacenarán todos los libros que hayas seleccionado como favoritos</p>
+                    </div>
+                </section>
+
+                <div class="album py-5">
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <ui:repeat var="l" value="#{ctrlFavoritos.buscaPorUser(facesContext.externalContext.userPrincipal.name)}">
+                                <div class="col">
+                                    <div align="center">
+
+                                        <h:graphicImage
+                                                value="#{l.url}" width="auto"
+                                                height="" class="product-image show-shadow cdl-img active"
+                                                style="height:350px; width:auto "/>
+
+                                        <div class="card-body">
+                                            <p class="card-text"><b>#{l.titulo}</b></p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <h:link value="Leer" class="btn btn-sm btn-outline-secondary"
+                                                            outcome="/libro/leer">
+                                                        <f:param name="isbn" value="${l.isbn}"/>
+                                                    </h:link>
+
+                                                    <h:link value="Opinión" class="btn btn-sm btn-outline-secondary"
+                                                            outcome="/opiniones">
+                                                        <f:param name="isbn" value="${l.isbn}"/>
+                                                    </h:link>
+
+                                                    <h:link value="Ediciones" class="btn btn-sm btn-outline-secondary"
+                                                            outcome="/Edicion">
+                                                        <f:param name="isbn" value="${l.isbn}"/>
+                                                    </h:link>
+
+                                                    <h:link value="Detalles" class="btn btn-sm btn-outline-secondary"
+                                                            outcome="/libro/detalle">
+                                                        <f:param name="isbn" value="${l.isbn}"/>
+                                                    </h:link>
+
+                                                    <h:form>
+                                                        <h:commandButton value="★" action="#{ctrlFavoritos.elimina(facesContext.externalContext.userPrincipal.name, l.isbn)}" class="btn btn-sm btn-outline-warning"/>
+                                                    </h:form>
+                                                </div>
+
+                                                <h:link value="Mostrar" outcome="/libro/detalle">
+                                                    <f:param name="isbn" value="${l.isbn}"/>
+                                                </h:link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                </div>
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>
